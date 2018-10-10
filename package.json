@@ -1,0 +1,30 @@
+{
+  "name": "primera-aplicacion",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon ./bin/www",
+    "prueba": "export PUERTO=3001 node app.js || SET \"PUERTO=3001\" && node app.js",
+    "start": "export NODE_ENV=produccion node app.js || SET \"NODE_ENV=produccion\" && npm run dev"
+  },
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "hbs": "~4.0.1",
+    "hbs-utils": "0.0.4",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.7",
+    "nodemailer-express-handlebars": "^3.0.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

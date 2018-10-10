@@ -1,0 +1,21 @@
+{
+  "name": "primera-aplicacion",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Ivan Ruiz <ivan@geekshubs.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1"
+  }
+}
