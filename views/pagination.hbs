@@ -1,0 +1,23 @@
+<style>
+   .active {
+       font-size: 1.5em;
+   }
+</style>
+
+{{#each films}}
+   <h3>{{film_id}} - {{title}}</h3>
+
+   <p><strong>Title</strong>: {{title}}, <strong>Description</strong>: {{description}}</p>
+   <p><strong>Release year</strong>: {{release_year}}, <strong>Rating</strong>: {{rating}}</p>
+{{/each}}
+
+{{#with paginate}}
+   {{#if hasProviousPages}}
+       <a href="{{#prev_link ../paginate}}{{/prev_link}}">Anterior</a>
+   {{/if}}
+{{/with}}
+
+{{!--
+{{#with}}
+
+{{/with}} --}}

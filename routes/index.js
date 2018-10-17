@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const paginate = require('express-paginate');
 
 const Films = require('../connection/models/filmsModel');
 
@@ -62,5 +63,32 @@ router.get('/pruebas', (req, res, next) => {
   });
 });
 
+router.get('/pagination', (req, res) => {
+  const page = (req.query.page || 1) - 1;
+  const limit = req.query.limit || 20;
+ 
+  const offset = req.skip || page * limit;
+ 
+  Films.paginate(offset, limit, (error, result) => {
+    if(error) return res.status(500).send(error);
+    else {
+      
+      const currentPage = (offset === 0) ? 1 : (offset/limit) + 1;
+      const totalCount = result.count[0].total;
+      const pageCount = Math.ceil(totalCount/limit); 
+      const pagination = paginate.getArrayPages(req)(limit, pageCount, currentPage);
+
+      
+      // res.send({page, limit, offset, result, currentPage, totalCount, pageCount, pagination})
+      res.render('pagination', {
+        films: result.rows,
+        currentPage,
+        links: pagination,
+        hasNext: paginate.hasNextPages(pageCount),
+        pageCount
+      });
+    }
+  });
+});
 
 module.exports = router;

@@ -15,7 +15,12 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var winston = require('winston');
 var hbs = require('hbs');
+
+var paginate = require('express-paginate');
+
 var hbsUtils = require('hbs-utils')(hbs);
+require('./helpers/hbs')(hbs);
+
 hbsUtils.registerPartials(`${__dirname}/views/partials`);
 
 hbsUtils.registerWatchedPartials(`${__dirname}/views/partials`);
@@ -30,6 +35,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+app.use(paginate.middleware(5));
 
 // app.use(logger('dev'));
 app.use(logger('combined', {stream: winston.stream }));
